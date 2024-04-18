@@ -20,8 +20,12 @@ export default function Form(props) {
   }
 
   function validate() {
-    if (name === "") {
+    if (name.trim() === "") {
       setError("Student name cannot be blank");
+      return;
+    }
+    if(interviewer === null) {
+      setError("Please select an interviewer");
       return;
     }
 
@@ -42,6 +46,7 @@ export default function Form(props) {
             onChange={event => {
               setName(event.target.value);
             }}
+            data-testid="student-name-input"
           />
         </form>
         <section className="appointment__validation">{error}</section>
